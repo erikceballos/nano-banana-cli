@@ -2,6 +2,8 @@
 
 AI-powered image generation and manipulation CLI using Google's Gemini models.
 
+> **Note:** This is a personal project and is not actively supported. Pull requests are not accepted. Feel free to [open an issue](https://github.com/lyalindotcom/nano-banana-cli/issues) if you run into something - I'll see it, but no promises on fixes or responses.
+
 ## Features
 
 - **Image Generation** - Generate images from text prompts
@@ -82,4 +84,4 @@ nanobanana generate "sunset" -o sunset.png --json
 
 ## License
 
-MIT
+Apache 2.0 - See [LICENSE](LICENSE) for details.
