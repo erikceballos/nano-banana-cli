@@ -10,7 +10,8 @@
 # - Built nanobanana binary in current directory
 #
 
-set -e
+# Don't exit on error - we want to continue and report all failures
+set +e
 
 # Colors for output
 RED='\033[0;31m'
@@ -48,6 +49,9 @@ echo ""
 echo -e "Test output directory: ${YELLOW}$TESTS_DIR/${NC}"
 echo ""
 
+# Delay between API calls to avoid rate limiting (seconds)
+API_DELAY=2
+
 # Helper function to run a test
 run_test() {
     local name="$1"
@@ -56,22 +60,27 @@ run_test() {
 
     echo -n "  Testing: $name... "
 
-    if eval "$cmd" > /dev/null 2>&1; then
-        if [ -f "$output_file" ]; then
-            size=$(ls -lh "$output_file" | awk '{print $5}')
-            echo -e "${GREEN}✓ PASS${NC} ($size)"
-            ((PASSED++))
-        else
-            echo -e "${RED}✗ FAIL${NC} (file not created)"
-            ((FAILED++))
-        fi
+    # Capture both stdout and stderr
+    local output
+    output=$(eval "$cmd" 2>&1)
+    local exit_code=$?
+
+    if [ $exit_code -eq 0 ] && [ -f "$output_file" ]; then
+        size=$(ls -lh "$output_file" | awk '{print $5}')
+        echo -e "${GREEN}✓ PASS${NC} ($size)"
+        ((PASSED++))
     else
-        echo -e "${RED}✗ FAIL${NC} (command failed)"
+        echo -e "${RED}✗ FAIL${NC}"
+        # Show error details
+        echo "$output" | head -3 | sed 's/^/      /'
         ((FAILED++))
     fi
+
+    # Small delay to avoid rate limiting
+    sleep $API_DELAY
 }
 
-# Helper for tests that might fail due to API issues
+# Helper for tests that might fail due to API issues (non-critical)
 run_test_optional() {
     local name="$1"
     local cmd="$2"
@@ -79,19 +88,20 @@ run_test_optional() {
 
     echo -n "  Testing: $name... "
 
-    if eval "$cmd" > /dev/null 2>&1; then
-        if [ -f "$output_file" ]; then
-            size=$(ls -lh "$output_file" | awk '{print $5}')
-            echo -e "${GREEN}✓ PASS${NC} ($size)"
-            ((PASSED++))
-        else
-            echo -e "${YELLOW}○ SKIP${NC} (file not created)"
-            ((SKIPPED++))
-        fi
+    local output
+    output=$(eval "$cmd" 2>&1)
+    local exit_code=$?
+
+    if [ $exit_code -eq 0 ] && [ -f "$output_file" ]; then
+        size=$(ls -lh "$output_file" | awk '{print $5}')
+        echo -e "${GREEN}✓ PASS${NC} ($size)"
+        ((PASSED++))
     else
-        echo -e "${YELLOW}○ SKIP${NC} (API error - may be rate limited)"
+        echo -e "${YELLOW}○ SKIP${NC} (optional test)"
         ((SKIPPED++))
     fi
+
+    sleep $API_DELAY
 }
 
 #═══════════════════════════════════════════════════════════════════════════════
